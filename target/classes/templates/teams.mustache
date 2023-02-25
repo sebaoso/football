@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Fotbollslag VM 2022</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+
+<h1 class="display-6">Fotboll VM 2022</h1>
+<table data-link="row" class="table">
+  <thead class="table-dark">
+  <tr>
+    <th scope="col"><h3>Lag</h3></th>
+    <th scope="col"><h3>Position</h3></th>
+    <th scope="col"><h3>Antal bucklor</h3></th>
+
+  </tr>
+  </thead>
+  <tbody>
+
+  {{#teamList}}
+    <tr class="table-success">
+      <td>{{name}}</td>
+      <td>{{position}}</td>
+      <td>{{nrOfCups}}</td>
+    </tr>
+  {{/teamList}}
+
+  </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+</body>
+</html>
