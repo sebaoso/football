@@ -1,0 +1,30 @@
+{{>header}}
+<div style="margin: 10px;">
+<h1 class="display-6">Spelare i {{country}}</h1>
+<table data-link="row" class="table">
+    <thead class="table-dark">
+    <tr>
+        <th scope="col"><h3>Namn</h3></th>
+        <th scope="col"><h3>Position</h3></th>
+        <th scope="col"><h3>Klubb</h3></th>
+        <th scope="col"><h3>Land</h3></th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    {{#playerList}}
+        <tr class="table-success">
+            <td>{{name}}</td>
+            <td>{{position}}</td>
+            <td>{{club}}</td>
+            <td>{{country}}</td>
+        </tr>
+    {{/playerList}}
+
+    </tbody>
+</table>
+
+<a href="/football" class="btn btn-secondary">Tillbaka</a>
+</div>
+{{>footer}}

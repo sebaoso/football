@@ -1,4 +1,4 @@
-package se.osorio.football;
+package se.osorio.football.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
