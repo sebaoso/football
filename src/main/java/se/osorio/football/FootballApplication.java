@@ -34,8 +34,8 @@ public class FootballApplication {
     servers.add(new Server().url(localUrl + ":" + localPort));
 
     return new OpenAPI()
-        .info(new Info().title("Library Openapi example")
-            .description("Ett exempel på en Library service som beskrivs med en OpenApi-specifikation")
+        .info(new Info().title("Football app Openapi example")
+            .description("Ett exempel på en Fotboll-service som beskrivs med en OpenApi-specifikation")
             .version(buildVersion)
             .contact(new Contact()
                 .name("Sebastian Osorio")))
