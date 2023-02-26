@@ -23,8 +23,6 @@ import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-//@SpringBootTest(classes = { FootballApplication.class })
-//@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class FootballApplicationTests {
@@ -39,7 +37,7 @@ public class FootballApplicationTests {
   private MockMvc mvc;
 
   @BeforeEach
-  public void initialiseRestAssuredMockMvcStandalone(){
+  public void initialiseMocks(){
     MockitoAnnotations.openMocks(this);
   }
 
