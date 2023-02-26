@@ -2,7 +2,6 @@ package se.osorio.football.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import se.osorio.football.model.Player;
-import se.osorio.football.model.Team;
 
 import java.util.List;
 

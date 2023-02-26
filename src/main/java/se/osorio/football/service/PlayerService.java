@@ -2,6 +2,7 @@ package se.osorio.football.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import se.osorio.football.model.Player;
 import se.osorio.football.repository.PlayerRepository;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@org.springframework.stereotype.Service
+@Service
 public class PlayerService {
 private final PlayerRepository playerRepository;
     @Autowired

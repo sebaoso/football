@@ -1,4 +1,4 @@
-package se.osorio.football;
+package se.osorio.football.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,10 +6,10 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import se.osorio.football.model.Player;
 import se.osorio.football.model.Team;
-import se.osorio.football.repository.PlayerRepository;
 import se.osorio.football.repository.TeamRepository;
 import se.osorio.football.service.PlayerService;
 
@@ -17,14 +17,15 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@RequestMapping()
 public class FootballViewController {
 
-  private final TeamRepository teamRepository;
+  private final TeamRepository teamService;
   private final PlayerService playerService;
 
   @Autowired
-  public FootballViewController(TeamRepository teamRepository,  PlayerService playerService) {
-    this.teamRepository = teamRepository;
+  public FootballViewController(TeamRepository teamService, PlayerService playerService) {
+    this.teamService = teamService;
     this.playerService = playerService;
   }
 
@@ -32,7 +33,7 @@ public class FootballViewController {
   public String teams(final Model model) {
     log.info("Inside teams GUI");
 
-    List<Team> teamList = teamRepository.findAll();
+    List<Team> teamList = teamService.findAll();
     model.addAttribute("teamList", teamList);
 
     return "teams";

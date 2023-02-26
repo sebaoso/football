@@ -1,4 +1,4 @@
-package se.osorio.football;
+package se.osorio.football.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -21,11 +21,11 @@ import java.util.List;
 @RestController
 public class FootballRestController {
 
-  private final TeamRepository teamRepository;
+  private final TeamRepository teamService;
 
   @Autowired
-  public FootballRestController(TeamRepository teamRepository) {
-    this.teamRepository = teamRepository;
+  public FootballRestController(TeamRepository teamService) {
+    this.teamService = teamService;
   }
 
   @GetMapping(path = "/teams")
@@ -47,7 +47,7 @@ public class FootballRestController {
               content = @Content())})
   public List<Team> getAllTeams() {
     log.info("Try to get all teams");
-    return teamRepository.findAll();
+    return teamService.findAll();
   }
 
   @PostMapping(path = "/add")
@@ -69,7 +69,7 @@ public class FootballRestController {
               content = @Content())})
   public void addTeam(@RequestBody Team team) {
     log.info("Try to get all teams");
-    teamRepository.save(team);
+    teamService.save(team);
   }
 
 
@@ -93,6 +93,6 @@ public class FootballRestController {
               content = @Content())})
   public List<Team> getTeamsByName(@PathVariable String name) {
     log.info("Try to get team by name {}", name);
-    return teamRepository.findAllByNameContaining(name);
+    return teamService.findAllByNameContaining(name);
   }
 }
