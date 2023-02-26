@@ -1,12 +1,15 @@
 # Football app
 Teknik: Java 17, Spring Boot 2.7.8, 
-Spring MVC, Spring Data JPA, H2, Swagger OpenAPI, JUnit 
+Spring MVC, Spring Data JPA, H2, Swagger OpenAPI, JUnit
 
-## Bygge
+## Kodbas
+https://github.com/sebaoso/football.git
+
+## Bygga
 Maven:
 mvn clean install
 
-## Starta
+## Starta lokalt
 mvn spring-boot:run
 
 ## URL till Football app GUI
@@ -29,10 +32,12 @@ Lösenord: password
 
 ## Test
 Enhetstest Junit 5
+
 Integrationstest GUI MockMvc
 
 ## GUI
 Mustache: https://mustache.github.io
+
 Bootstrap: https://getbootstrap.com
 
 
