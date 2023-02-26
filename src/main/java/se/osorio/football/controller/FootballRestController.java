@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import se.osorio.football.entity.PlayerEntity;
+import se.osorio.football.model.Player;
 import se.osorio.football.model.Team;
-import se.osorio.football.repository.TeamRepository;
+import se.osorio.football.service.PlayerService;
+import se.osorio.football.service.TeamService;
 
 import java.util.List;
 
@@ -21,21 +24,26 @@ import java.util.List;
 @RestController
 public class FootballRestController {
 
-  private final TeamRepository teamService;
+  private final TeamService teamService;
+
+  private final PlayerService playerService;
 
   @Autowired
-  public FootballRestController(TeamRepository teamService) {
+  public FootballRestController(TeamService teamService, PlayerService playerService) {
     this.teamService = teamService;
+    this.playerService = playerService;
   }
 
   @GetMapping(path = "/teams")
   @Operation(summary = "",
       description = "Hämta alla lag.",
-      tags = {"Hämta lag"},
+      tags = {"Hämta alla lag"},
       responses = {
           @ApiResponse(responseCode = "200",
               description = "Svar vid giltigt anrop med inparametrar i korrekt format",
-              content = @Content(array = @ArraySchema(schema = @Schema(implementation = Team.class)))),
+              content = {
+                  @Content(array = @ArraySchema(schema = @Schema(implementation = Team.class)))
+              }),
           @ApiResponse(responseCode = "400",
               description = "Bad Request",
               content = @Content()),
@@ -95,4 +103,29 @@ public class FootballRestController {
     log.info("Try to get team by name {}", name);
     return teamService.findAllByNameContaining(name);
   }
+
+  @GetMapping(path = "/players")
+  @Operation(summary = "",
+          description = "Hämta alla spelare.",
+          tags = {"Hämta alla spelare"},
+          responses = {
+                  @ApiResponse(responseCode = "200",
+                          description = "Svar vid giltigt anrop med inparametrar i korrekt format",
+                          content = {
+                                  @Content(array = @ArraySchema(schema = @Schema(implementation = Player.class)))
+                          }),
+                  @ApiResponse(responseCode = "400",
+                          description = "Bad Request",
+                          content = @Content()),
+                  @ApiResponse(responseCode = "500",
+                          description = "Internal Server Error",
+                          content = @Content()),
+                  @ApiResponse(responseCode = "503",
+                          description = "Service Unavailable - Fel vid anrop till underliggande tjänster",
+                          content = @Content())})
+  public List<Player> getAllPlayers() {
+    log.info("Try to get all players");
+    return playerService.findAll();
+  }
+
 }

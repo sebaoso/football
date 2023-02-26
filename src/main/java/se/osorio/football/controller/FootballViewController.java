@@ -8,10 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import se.osorio.football.model.Player;
 import se.osorio.football.model.Team;
-import se.osorio.football.repository.TeamRepository;
 import se.osorio.football.service.PlayerService;
+import se.osorio.football.service.TeamService;
 
 import java.util.List;
 
@@ -20,11 +19,11 @@ import java.util.List;
 @RequestMapping()
 public class FootballViewController {
 
-  private final TeamRepository teamService;
+  private final TeamService teamService;
   private final PlayerService playerService;
 
   @Autowired
-  public FootballViewController(TeamRepository teamService, PlayerService playerService) {
+  public FootballViewController(TeamService teamService, PlayerService playerService) {
     this.teamService = teamService;
     this.playerService = playerService;
   }
@@ -39,19 +38,16 @@ public class FootballViewController {
     return "teams";
   }
 
-  @GetMapping(path = "/players", produces = MediaType.TEXT_HTML_VALUE)
-  public String players(@RequestParam String country, final Model model) {
+  @GetMapping(path = "/playersofteam", produces = MediaType.TEXT_HTML_VALUE)
+  public String players(@RequestParam Integer id, final Model model) {
     log.info("Inside players GUI");
 
-    List<Player> playerList = playerService.getPlayersFromCountry(country);
-    model.addAttribute("country", country);
-    model.addAttribute("playerList", playerList);
+    Team team = teamService.getTeam(id);
+
+    model.addAttribute("country", team.getName());
+    model.addAttribute("playerList", team.getPlayers());
 
     return "players";
   }
-
-
-
-
 
 }

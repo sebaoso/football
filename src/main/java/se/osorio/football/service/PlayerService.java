@@ -3,7 +3,9 @@ package se.osorio.football.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import se.osorio.football.entity.PlayerEntity;
 import se.osorio.football.model.Player;
+import se.osorio.football.model.Team;
 import se.osorio.football.repository.PlayerRepository;
 
 import java.util.List;
@@ -17,10 +19,19 @@ private final PlayerRepository playerRepository;
     public PlayerService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
+    public List<Player> findAll(){
+        List<PlayerEntity> playerEntities = playerRepository.findAll();
 
-    public List<Player> getPlayersFromCountry(String country){
-       return playerRepository.findAll().stream()
-               .filter(player -> player.getCountry().equals(country))
-               .collect(Collectors.toList());
+        List<Player> playerList = playerEntities.stream()
+                .map(playerEntity -> Player.builder()
+                        .id(playerEntity.getId())
+                        .name(playerEntity.getName())
+                        .position(playerEntity.getPosition())
+                        .club(playerEntity.getClub())
+                        .team(playerEntity.getTeam().getName())
+                        .build())
+                .collect(Collectors.toList());
+
+        return playerList;
     }
 }
