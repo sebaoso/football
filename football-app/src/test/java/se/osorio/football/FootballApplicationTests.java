@@ -21,6 +21,7 @@ import se.osorio.football.model.Team;
 import se.osorio.football.repository.TeamRepository;
 import se.osorio.football.service.PlayerService;
 import se.osorio.football.service.TeamService;
+import se.osorio.football.service.TeamServiceImpl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,7 +56,7 @@ public class FootballApplicationTests {
   @BeforeEach
   public void initialiseMocks(){
     MockitoAnnotations.openMocks(this);
-    teamService = new TeamService(teamRepository);
+    teamService = new TeamServiceImpl(teamRepository);
   }
 
   @Test

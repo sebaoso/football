@@ -12,82 +12,11 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Slf4j
-@Service
-public class TeamService {
-    private final TeamRepository teamRepository;
-    @Autowired
-    public TeamService(TeamRepository teamRepository) {
-        this.teamRepository = teamRepository;
-    }
 
-    public List<Team> findAllByNameContaining(String name) {
-
-        List<TeamEntity> teamEntities = teamRepository.findAllByNameContaining(name);
-
-        List<Team> teamList = mapTeamEntitiesToTeamModel(teamEntities);
-        return teamList;
-    }
-
-    private static List<Team> mapTeamEntitiesToTeamModel(List<TeamEntity> teamEntities) {
-        List<Team> teamList = teamEntities.stream()
-                .map(mapTeamEntityToTeamModel())
-                .collect(Collectors.toList());
-        return teamList;
-    }
-
-    private static Function<TeamEntity, Team> mapTeamEntityToTeamModel() {
-        return teamEntity -> Team.builder()
-                .id(teamEntity.getId())
-                .name(teamEntity.getName())
-                .position(teamEntity.getPosition())
-                .nrOfCups(teamEntity.getNrOfCups())
-                .players(mapPlayerEntitiesToPlayerModel(teamEntity))
-                .build();
-    }
-
-    private static List<Player> mapPlayerEntitiesToPlayerModel(TeamEntity teamEntity) {
-        return teamEntity.getPlayers().stream().map(playerEntity -> Player.builder()
-                        .id(playerEntity.getId())
-                        .name(playerEntity.getName())
-                        .position(playerEntity.getPosition())
-                        .club(playerEntity.getClub())
-                        .team(teamEntity.getName())
-                        .build())
-                .collect(Collectors.toList());
-    }
-
-    public List<Team> findAll() {
-        List<TeamEntity> teamEntities = teamRepository.findAll();
-        List<Team> teamList = mapTeamEntitiesToTeamModel(teamEntities);
-        return teamList;
-    }
-
-    public Team getTeam(Integer id) {
-        TeamEntity teamEntity = teamRepository.findById(id).orElse(null);
-
-        Team team = Team.builder()
-                .id(teamEntity.getId())
-                .name(teamEntity.getName())
-                .position(teamEntity.getPosition())
-                .nrOfCups(teamEntity.getNrOfCups())
-                .players(mapPlayerEntitiesToPlayerModel(teamEntity))
-                .build();
-
-        return team;
-    }
-
-    public List<Player> getPlayersOfTeam(Integer id) {
-        return getTeam(id).getPlayers();
-    }
-
-    public void save(Team team){
-        TeamEntity teamEntity = TeamEntity.builder()
-                .id(team.getId())
-                .name(team.getName())
-                .position(team.getPosition())
-                .nrOfCups(team.getNrOfCups())
-                .build();
-        teamRepository.save(teamEntity);
-    }
+public interface TeamService {
+    public List<Team> findAllByNameContaining(String name);
+    public List<Team> findAll();
+    public Team getTeam(Integer id);
+    public List<Player> getPlayersOfTeam(Integer id);
+    public void save(Team team);
 }
