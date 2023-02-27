@@ -1,6 +1,6 @@
 # Football app
 Teknik: Java 17, Spring Boot 2.7.8, 
-Spring MVC, Spring Data JPA, H2, Swagger OpenAPI, JUnit, Lombok
+Spring MVC, Spring Data JPA, H2, Swagger OpenAPI, JUnit, Lombok, Mustache, Bootstrap
 
 ## Kodbas
 https://github.com/sebaoso/football.git
@@ -42,11 +42,6 @@ I modulen fotboll-test:
 OpenApi-client test
 
 (obs! football-app måste vara igång)
-
-## GUI
-Mustache: https://mustache.github.io
-
-Bootstrap: https://getbootstrap.com
 
 
 
