@@ -43,11 +43,6 @@ OpenApi-client test
 
 (obs! football-app måste vara igång)
 
-## GUI
-Mustache: https://mustache.github.io
-
-Bootstrap: https://getbootstrap.com
-
 
 
 
