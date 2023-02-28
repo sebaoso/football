@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.0.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>se.osorio</groupId>
@@ -20,8 +20,8 @@
         <jackson-databind-nullable-version>0.2.1</jackson-databind-nullable-version>
         <swagger-annotations-version>1.5.22</swagger-annotations-version>
         <jsr305-version>3.0.2</jsr305-version>
+    </properties>
 
-    </properties><!-- Has to be the same as in applicaton.properties -->
     <build>
         <plugins>
             <plugin>
