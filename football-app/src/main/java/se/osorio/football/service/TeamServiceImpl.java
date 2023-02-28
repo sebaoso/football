@@ -7,7 +7,6 @@ import se.osorio.football.entity.TeamEntity;
 import se.osorio.football.model.Player;
 import se.osorio.football.model.Team;
 import se.osorio.football.repository.TeamRepository;
-
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;

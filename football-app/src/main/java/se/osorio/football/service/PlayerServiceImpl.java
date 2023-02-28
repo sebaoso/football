@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import se.osorio.football.entity.PlayerEntity;
 import se.osorio.football.model.Player;
 import se.osorio.football.repository.PlayerRepository;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

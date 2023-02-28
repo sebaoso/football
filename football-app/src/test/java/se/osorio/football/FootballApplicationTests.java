@@ -21,11 +21,9 @@ import se.osorio.football.repository.TeamRepository;
 import se.osorio.football.service.PlayerService;
 import se.osorio.football.service.TeamService;
 import se.osorio.football.service.TeamServiceImpl;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -50,6 +48,7 @@ public class FootballApplicationTests {
   private MockMvc mvc;
 
   private static final String ARGENTINA = "Argentina";
+  private static final String FRANCE = "France";
 
   @BeforeEach
   public void initialiseMocks(){
@@ -61,23 +60,7 @@ public class FootballApplicationTests {
   public void testGetTeamsByName() {
     FootballRestController controller = new FootballRestController(teamService, playerService);
 
-    List<PlayerEntity> playerEntityList = Arrays.asList(PlayerEntity.builder()
-                    .name("Lionel Messi")
-                    .club("PSG")
-                    .position("RW")
-                    .build(),
-            PlayerEntity.builder()
-                    .name("Angel Di Maria")
-                    .club("Juventus")
-                    .position("LW")
-                    .build());
-
-    List<TeamEntity> teamList = Arrays.asList(TeamEntity.builder()
-            .name(ARGENTINA)
-            .position(1)
-            .nrOfCups(3)
-            .players(playerEntityList)
-            .build());
+    List<TeamEntity> teamList = Arrays.asList(buildTeamEntity());
 
     when(teamRepository.findAllByNameContaining(ARGENTINA)).thenReturn(teamList);
 
@@ -95,12 +78,7 @@ public class FootballApplicationTests {
   @Test
   public void givenCountryArgentina_shouldExistMessi() throws Exception {
 
-    Team team = Team.builder().name(ARGENTINA).position(1).nrOfCups(3).players(new ArrayList<>()).build();
-
-    List<Player> playerList = Arrays.asList(Player.builder().name("Lionel Messi").club("PSG").position("RW").team(ARGENTINA).build(),
-            Player.builder().name("Angel Di Maria").club("Juventus").position("LW").team(ARGENTINA).build());
-
-    team.addPlayers(playerList);
+    Team team = buildTeam();
 
     when(teamServiceMock.getTeam(1)).thenReturn(team);
 
@@ -110,4 +88,68 @@ public class FootballApplicationTests {
 
 
 
+  private static Team buildTeam() {
+    Team team = Team.builder().id(1).name(ARGENTINA).position(1).nrOfCups(3).players(new ArrayList<>()).build();
+
+    List<Player> playerList = Arrays.asList(Player.builder().name("Lionel Messi").club("PSG").position("RW").team(ARGENTINA).build(),
+            Player.builder().name("Angel Di Maria").club("Juventus").position("LW").team(ARGENTINA).build());
+
+    team.addPlayers(playerList);
+    return team;
+  }
+
+  private static TeamEntity buildTeamEntity() {
+
+    List<PlayerEntity> argentinaPlayerEntityList = Arrays.asList(PlayerEntity.builder()
+                    .name("Lionel Messi")
+                    .club("PSG")
+                    .position("RW")
+                    .build(),
+            PlayerEntity.builder()
+                    .name("Angel Di Maria")
+                    .club("Juventus")
+                    .position("LW")
+                    .build());
+    TeamEntity teamEntity = TeamEntity.builder()
+            .name(ARGENTINA)
+            .position(1)
+            .nrOfCups(3)
+            .players(argentinaPlayerEntityList)
+            .build();
+    return teamEntity;
+
+  }
+
+  private static List<TeamEntity> buildTeamEntities() {
+    List<PlayerEntity> argentinaPlayerEntityList = Arrays.asList(PlayerEntity.builder()
+                    .name("Lionel Messi")
+                    .club("PSG")
+                    .position("RW")
+                    .build(),
+            PlayerEntity.builder()
+                    .name("Angel Di Maria")
+                    .club("Juventus")
+                    .position("LW")
+                    .build());
+
+    List<PlayerEntity> francePlayerEntityList = Arrays.asList(PlayerEntity.builder()
+                    .name("Kylian Mbappe")
+                    .club("PSG")
+                    .position("ST")
+                    .build());
+
+    List<TeamEntity> teamList = Arrays.asList(TeamEntity.builder()
+            .name(ARGENTINA)
+            .position(1)
+            .nrOfCups(3)
+            .players(argentinaPlayerEntityList)
+            .build(), TeamEntity.builder()
+            .name(FRANCE)
+            .position(2)
+            .nrOfCups(2)
+            .players(francePlayerEntityList)
+            .build());
+
+    return teamList;
+  }
 }

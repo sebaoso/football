@@ -1,7 +1,5 @@
-package se.osorio.football.model;
+package se.osorio.football;
 
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,10 +7,8 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Data
 @Builder
-@Schema(description = "Team")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Team {
@@ -21,7 +17,6 @@ public class Team {
   private String name;
   private Integer position;
   private Integer nrOfCups;
-  @ArraySchema(schema = @Schema(description = "List of players"))
   private List<Player> players = new ArrayList<>();
   public void addPlayer(Player player){
     players.add(player);

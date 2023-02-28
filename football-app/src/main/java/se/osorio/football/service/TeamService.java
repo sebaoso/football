@@ -2,7 +2,6 @@ package se.osorio.football.service;
 
 import se.osorio.football.model.Player;
 import se.osorio.football.model.Team;
-
 import java.util.List;
 
 
