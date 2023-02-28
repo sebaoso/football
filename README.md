@@ -1,5 +1,5 @@
 # Football app
-Teknik: Java 17, Spring Boot 2.7.8, 
+Teknik: Java 17, Spring Boot 3.0.0, 
 Spring MVC, Spring Data JPA, H2, Swagger OpenAPI, JUnit, Lombok, Mustache, Bootstrap
 
 ## Kodbas
