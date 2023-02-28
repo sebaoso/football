@@ -37,7 +37,7 @@ Enhetstest Junit 5
 
 Integrationstest GUI MockMvc
 
-I modulen fotboll-test:
+I modulen football-test:
 
 OpenApi-client test
 
