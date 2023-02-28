@@ -10,7 +10,7 @@ Maven:
 mvn clean install
 
 ## Starta lokalt
-I modulen fotboll-app:
+I modulen football-app:
 
 mvn spring-boot:run
 
