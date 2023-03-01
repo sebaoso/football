@@ -41,6 +41,8 @@ I modulen football-test:
 
 OpenApi-client test
 
+REST API server integration test
+
 (obs! football-app måste vara igång)
 
 
