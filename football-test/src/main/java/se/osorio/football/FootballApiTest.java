@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import se.osorio.football.client.model.Team;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -31,6 +32,12 @@ public class FootballApiTest {
         ObjectMapper objectMapper = new ObjectMapper();
         List<Team> teamList = Arrays.asList(objectMapper.readValue(jsonResponse, Team[].class));
         log.info(jsonResponse);
-        assertTrue(teamList.stream().anyMatch(team -> team.getName().equals(ARGENTINA)));
+        assertTrue(teamList.stream()
+                .anyMatch(team -> team.getName().equals(ARGENTINA)));
+
+        assertTrue(teamList.stream()
+                .anyMatch(team -> team.getPlayers().stream()
+                        .anyMatch(p -> p.getName().equals("Lionel Messi"))
+                ));
     }
 }
